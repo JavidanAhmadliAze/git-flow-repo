@@ -3,7 +3,11 @@ name: Release Automation
 on:
   push:
     branches:
-      - main  # Trigger only when code is pushed to main
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   release:
@@ -33,4 +37,5 @@ jobs:
         with:
           tag_name: ${{ env.RELEASE_VERSION }}
           generate_release_notes: true
-        
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
