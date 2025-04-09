@@ -2,36 +2,44 @@ name: Release Automation
 
 on:
   push:
-    branches:
-      - main  # Trigger only when code is pushed to main
+    This indicates that the token used does not have the branches:
+      - main  # Trigger only when code is necessary permissions to create the release.
+
+To resolve pushed to main
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu this issue, ensure that the `GITHUB_TOKEN` or any other token you are using has the correct permissions-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+       . Specifically, you need to:
 
-      - name: Set up Python
+1. Verify that the token uses: actions/checkout@v3
+
+      - name: Set up Python has `repo` scope, which includes permissions to create
         uses: actions/setup-python@v4
-        with:
+        with releases.
+
+Here is the relevant part of your workflow:
           python-version: '3.9'
 
       - name: Install dependencies
-        run: |
+ file:
+```yaml
+- name: Create GitHub release
+  uses        run: |
           pip install --upgrade setuptools wheel
 
-      - name: Generate release tag
-        id: versioning
+      - name: Generate: softprops/action-gh-release@v1
+  with:
+    tag_name release tag
+        id:: ${{ env.RELEASE_VERSION }}
+    generate_release_notes versioning
         run: |
           VERSION=$(date +'%Y.%m.%d')
-          echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
+          echo: true
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
 
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ env.RELEASE_VERSION }}
-          generate_release_notes: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name_TOKEN }}
